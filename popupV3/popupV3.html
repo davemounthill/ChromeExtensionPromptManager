@@ -1,0 +1,42 @@
+<!-- popup.html -->
+
+<div class="sidebar">
+    <h1>ChatGPT Prompt Manager</h1>
+    
+    <div class="search-filter">
+      <input type="text" id="search-input" placeholder="Search prompts...">
+      <select id="category-filter">
+        <option value="">All Categories</option>
+        <!-- Add options for categories -->
+      </select>
+      <select id="use-case-filter">
+        <option value="">All Use Cases</option>
+        <!-- Add options for use cases -->
+      </select>
+      <select id="tag-filter">
+        <option value="">All Tags</option>
+        <!-- Add options for tags -->
+      </select>
+    </div>
+    
+    <div id="prompt-list">
+      <!-- List of prompts will be dynamically generated here -->
+    </div>
+    
+    <button id="create-prompt-btn">Create New Prompt</button>
+  </div>
+  
+  <!-- Modal for displaying a prompt -->
+  <div id="show-prompt-modal" class="modal">
+    <div class="modal-content">
+      <!-- Content for displaying the prompt -->
+    </div>
+  </div>
+  
+  <!-- Modal for editing a prompt -->
+  <div id="edit-prompt-modal" class="modal">
+    <div class="modal-content">
+      <!-- Form for editing the prompt -->
+    </div>
+  </div>
+  

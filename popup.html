@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Prompts Manager</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <header>
+        <h1>ChatGPT Prompts Manager</h1>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <div class="searchbox">
+                <input type="text" id="searchInput" placeholder="Search Prompts">
+            </div>
+            <div class="filters">
+                <h2>Filters</h2>
+                <div class="filterItem">
+                    <label for="categoryFilter">Category</label>
+                    <input type="text" id="categoryFilter">
+                </div>
+                <div class="filterItem">
+                    <label for="useCaseFilter">Use Case</label>
+                    <input type="text" id="useCaseFilter">
+                </div>
+                <div class="filterItem">
+                    <label for="tagsFilter">Tags</label>
+                    <input type="text" id="tagsFilter" placeholder="Separate tags with commas">
+                </div>
+                <div class="filterItem">
+                    <label for="sortFilter">Sort By</label>
+                    <select id="sortFilter">
+                        <option value="title">Title</option>
+                        <option value="category">Category</option>
+                        <option value="useCase">Use Case</option>
+                    </select>
+                </div>
+            </div>
+            <div class="promptList">
+                <!-- Prompt list items will be dynamically generated here -->
+            </div>
+            <div class="pagination">
+                <button id="previousPageButton" disabled>Previous</button>
+                <button id="nextPageButton" disabled>Next</button>
+            </div>
+            <div class="importExport">
+                <button id="exportButton">Export Prompts</button>
+                <input type="file" id="importInput">
+                <button id="importButton">Import Prompts</button>
+            </div>
+        </div>
+        <div class="content">
+            <div id="promptDetails">
+                <h2>Title: <span id="promptTitle"></span></h2>
+                <p id="promptSummary"></p>
+                <div class="buttonGroup">
+                    <button id="showPromptButton">Show Prompt</button>
+                    <button id="editPromptButton">Edit Prompt</button>
+                    <button id="usePromptButton">Use Prompt</button>
+                    <button id="favoritePromptButton">Favorite Prompt</button>
+                </div>
+            </div>
+            <div id="createPromptForm">
+                <h2>Create New Prompt</h2>
+                <div class="formGroup">
+                    <label for="newPromptTitle">Title</label>
+                    <input type="text" id="newPromptTitle" required>
+                </div>
+                <div class="formGroup">
+                    <label for="newPromptSummary">Summary</label>
+                    <textarea id="newPromptSummary" required></textarea>
+                </div>
+                <div class="formGroup">
+                    <label for="newPromptCategory">Category</label>
+                    <input type="text" id="newPromptCategory" required>
+                </div>
+                <div class="formGroup">
+                    <label for="newPromptUseCase">Use Case</label>
+                    <input type="text" id="newPromptUseCase" required>
+                </div>
+                <div class="formGroup">
+                    <label for="newPromptTags">Tags</label>
+                    <input type="text" id="newPromptTags" placeholder="Separate tags with commas" required>
+                </div>
+                <div class="buttonGroup">
+                    <button id="cancelPromptButton">Cancel</button>
+                    <button id="savePromptButton">Save Prompt</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>

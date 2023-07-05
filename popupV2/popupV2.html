@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ChatGPT Assistant</title>
+  <link rel="stylesheet" type="text/css" href="popup.css">
+</head>
+<body>
+  <h1>ChatGPT Assistant</h1>
+  <div id="search-container">
+    <input type="text" id="search-input" placeholder="Search...">
+  </div>
+  <div id="filters-container">
+    <select id="category-filter">
+      <option value="">All Categories</option>
+      <option value="Category 1">Category 1</option>
+      <option value="Category 2">Category 2</option>
+    </select>
+    <select id="use-case-filter">
+      <option value="">All Use Cases</option>
+      <option value="Use Case 1">Use Case 1</option>
+      <option value="Use Case 2">Use Case 2</option>
+    </select>
+    <select id="tag-filter">
+      <option value="">All Tags</option>
+      <option value="Tag 1">Tag 1</option>
+      <option value="Tag 2">Tag 2</option>
+    </select>
+  </div>
+  <div id="prompt-list"></div>
+  <div id="pagination">
+    <button id="previous-page">Previous</button>
+    <button id="next-page">Next</button>
+  </div>
+  <button id="export-button">Export Data</button>
+  <input type="file" id="import-input">
+  <script src="popup.js"></script>
+</body>
+</html>
