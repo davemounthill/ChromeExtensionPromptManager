@@ -17,8 +17,8 @@ function injectPromptIntoWebpage(promptContent) {
 
 // Listen for messages from the extension
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-if (message.type === 'injectPrompt') {
-  injectPromptIntoWebpage(message.promptContent);
-  sendResponse({ success: true });
-}
+  if (message.type === 'injectPrompt') {
+    injectPromptIntoWebpage(message.promptContent);
+    sendResponse({ success: true });
+  }
 });

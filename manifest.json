@@ -2,26 +2,31 @@
   "manifest_version": 2,
   "name": "ChatGPT Prompts Manager",
   "version": "1.0",
-  "description": "Manage your ChatGPT prompts efficiently",
+  "description": "Manage prompts for ChatGPT",
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
     "128": "icon128.png"
   },
   "browser_action": {
-    "default_icon": "icon16.png",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
   },
   "background": {
     "scripts": ["background.js"],
     "persistent": false
   },
+  "permissions": ["tabs", "activeTab", "storage"],
+  "options_page": "options.html",
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "js": ["content.js"],
+      "run_at": "document_end"
     }
-  ],
-  "options_page": "options.html",
-  "permissions": ["storage", "activeTab", "tabs"]
+  ]
 }

@@ -1,256 +1,202 @@
-// Store the prompt data
-let promptData = [];
-
-// Get the DOM elements
-const searchInput = document.getElementById('search-input');
-const categoryFilter = document.getElementById('category-filter');
-const useCaseFilter = document.getElementById('use-case-filter');
-const tagFilter = document.getElementById('tag-filter');
-const promptList = document.getElementById('prompt-list');
-const createPromptBtn = document.getElementById('create-prompt-btn');
-const previousPageButton = document.getElementById('previous-page');
-const nextPageButton = document.getElementById('next-page');
-
-let filteredPrompts = [];
-let currentPage = 1;
-const promptsPerPage = 10;
-
-// Function to filter prompts based on search input and filter options
-function filterPrompts() {
-    const searchValue = searchInput.value.toLowerCase();
-    const categoryValue = categoryFilter.value;
-    const useCaseValue = useCaseFilter.value;
-    const tagValue = tagFilter.value;
-
-    // Filter the prompts based on the search input and filter options
-    filteredPrompts = promptData.filter((prompt) => {
-        const title = prompt.title.toLowerCase();
-        const summary = prompt.summary.toLowerCase();
-        const category = prompt.category;
-        const useCase = prompt.useCase;
-        const tags = prompt.tags;
-
-        // Check if the prompt matches the search input
-        if (title.includes(searchValue) || summary.includes(searchValue)) {
-            // Check if the prompt matches the filter options
-            if (
-                (categoryValue === '' || category === categoryValue) &&
-                (useCaseValue === '' || useCase === useCaseValue) &&
-                (tagValue === '' || tags.includes(tagValue))
-            ) {
-                return true;
-            }
-        }
-
-        return false;
-    });
-
-    // Reset the current page to 1
-    currentPage = 1;
-
-    // Update the prompt list display
-    displayPromptsForPage(filteredPrompts, currentPage);
-    updatePaginationButtons(filteredPrompts);
-}
-
-// Function to display the prompts in the prompt list for the specified page
-function displayPromptsForPage(prompts, pageNumber) {
-    promptList.innerHTML = '';
-
-    const startIndex = (pageNumber - 1) * promptsPerPage;
-    const endIndex = startIndex + promptsPerPage;
-    const promptsToDisplay = prompts.slice(startIndex, endIndex);
-
-    promptsToDisplay.forEach((prompt) => {
-        const promptItem = document.createElement('div');
-        promptItem.classList.add('prompt-item');
-
-        const title = document.createElement('h3');
-        title.textContent = prompt.title;
-
-        const summary = document.createElement('p');
-        summary.textContent = prompt.summary;
-
-        promptItem.appendChild(title);
-        promptItem.appendChild(summary);
-
-        // Add event listener to show prompt modal when clicked
-        promptItem.addEventListener('click', () => {
-            // Show the modal with the prompt content
-            showPromptModal(prompt);
-        });
-
-        promptList.appendChild(promptItem);
-    });
-}
-
-// Function to update the pagination buttons
-function updatePaginationButtons(prompts) {
-    previousPageButton.disabled = currentPage === 1;
-    nextPageButton.disabled = currentPage === Math.ceil(prompts.length / promptsPerPage);
-}
-
-// Function to go to the previous page of prompts
-function goToPreviousPage() {
-    if (currentPage > 1) {
-        currentPage--;
-        displayPromptsForPage(filteredPrompts, currentPage);
-        updatePaginationButtons(filteredPrompts);
+document.addEventListener('DOMContentLoaded', () => {
+    const searchBox = document.getElementById('search-box');
+    const categoryDropdown = document.getElementById('category');
+    const tagsDropdown = document.getElementById('tags');
+    const promptList = document.getElementById('prompt-list');
+    const previousPageButton = document.getElementById('previous-page-button');
+    const nextPageButton = document.getElementById('next-page-button');
+    const importFileInput = document.getElementById('import-file');
+    const exportButton = document.getElementById('export-button');
+    const createPromptButton = document.getElementById('create-prompt-button');
+    const promptModal = document.getElementById('prompt-modal');
+    const promptForm = document.getElementById('prompt-form');
+  
+    let currentPage = 1;
+    let totalPages = 1;
+    let prompts = [];
+  
+    // Function to load prompts from storage and update the UI
+    function loadPrompts() {
+      chrome.runtime.sendMessage({ type: 'getPrompts' }, (response) => {
+        prompts = response.prompts || [];
+        filterPrompts();
+        updatePaginationButtons();
+      });
     }
-}
-
-// Function to go to the next page of prompts
-function goToNextPage() {
-    const totalPages = Math.ceil(filteredPrompts.length / promptsPerPage);
-    if (currentPage < totalPages) {
-        currentPage++;
-        displayPromptsForPage(filteredPrompts, currentPage);
-        updatePaginationPaginationButtons(filteredPrompts);
+  
+    // Function to filter prompts based on search, category, and tags
+    function filterPrompts() {
+      const searchQuery = searchBox.value.toLowerCase();
+      const selectedCategory = categoryDropdown.value;
+      const selectedTags= Array.from(tagsDropdown.selectedOptions).map((option) => option.value);
+  
+      let filteredPrompts = prompts.filter((prompt) => {
+        const promptTitle = prompt.title.toLowerCase();
+        const promptSummary = prompt.summary.toLowerCase();
+        const promptCategory = prompt.category.toLowerCase();
+        const promptTags = prompt.tags.map((tag) => tag.toLowerCase());
+  
+        // Check if prompt matches search query
+        const matchesSearch = promptTitle.includes(searchQuery) || promptSummary.includes(searchQuery);
+  
+        // Check if prompt matches selected category
+        const matchesCategory = selectedCategory === '' || promptCategory === selectedCategory;
+  
+        // Check if prompt matches selected tags
+        const matchesTags = selectedTags.length === 0 || selectedTags.every((tag) => promptTags.includes(tag));
+  
+        return matchesSearch && matchesCategory && matchesTags;
+      });
+  
+      // Sort prompts by title
+      filteredPrompts.sort((a, b) => a.title.localeCompare(b.title));
+  
+      // Update prompt list UI
+      updatePromptList(filteredPrompts);
     }
-}
-
-// Function to show the modal with the prompt content
-functionshowPromptModal(prompt) {
-    const modal = document.getElementById('show-prompt-modal');
-    const modalContent = modal.querySelector('.modal-content');
-
-    // Set the content of the modal
-    modalContent.innerHTML = `
-    <h3>${prompt.title}</h3>
-    <p>${prompt.summary}</p>
-    <!-- Add additional content for the prompt modal as needed -->
-  `;
-
-    // Display the modal
-    modal.style.display = 'block';
-}
-
-// Event listeners for search input and filter options
-searchInput.addEventListener('input', filterPrompts);
-categoryFilter.addEventListener('change', filterPrompts);
-useCaseFilter.addEventListener('change', filterPrompts);
-tagFilter.addEventListener('change', filterPrompts);
-previousPageButton.addEventListener('click', goToPreviousPage);
-nextPageButton.addEventListener('click', goToNextPage);
-
-// Event listener for the "Create New Prompt" button
-createPromptBtn.addEventListener('click', () => {
-    // Show the modal for creating a new prompt
-    showCreatePromptModal();
-});
-
-// Function to show the modal for creating a new prompt
-function showCreatePromptModal() {
-    const modal = document.getElementById('edit-prompt-modal');
-    const modalContent = modal.querySelector('.modal-content');
-
-    // Set the content of the modal for creating a new prompt
-    modalContent.innerHTML = `
-    <h3>Create New Prompt</h3>
-    <form id="create-prompt-form">
-      <label for="title-input">Title:</label>
-      <input type="text" id="title-input" required>
-
-      <label for="summary-input">Summary:</label>
-      <textarea id="summary-input" required></textarea>
-
-      <label for="category-input">Category:</label>
-      <input type="text" id="category-input" required>
-
-      <label for="use-case-input">Use Case:</label>
-      <input type="text" id="use-case-input" required>
-
-      <label for="tags-input">Tags (comma-separated):</label>
-      <input type="text" id="tags-input" required>
-
-      <button type="submit">Create</button>
-    </form>
-  `;
-
-    // Add event listener for form submission
-    const createPromptForm = document.getElementById('create-prompt-form');
-    createPromptForm.addEventListener('submit', handleCreatePrompt);
-
-    // Display the modal
-    modal.style.display = 'block';
-}
-
-// Function to handle the form submission for creating a new prompt
-function handleCreatePrompt(event) {
-    event.preventDefault();
-
-    // Get the form input values
-    const titleInput = document.getElementById('title-input');
-    const summaryInput = document.getElementById('summary-input');
-    const categoryInput = document.getElementById('category-input');
-    const useCaseInput = document.getElementById('use-case-input');
-    const tagsInput = document.getElementById('tags-input');
-
-    // Validate the form inputs
-    if (
-        titleInput.value.trim() === '' ||
-        summaryInput.value.trim() === '' ||
-        categoryInput.value.trim() === '' ||
-        useCaseInput.value.trim() === '' ||
-        tagsInput.value.trim() === ''
-    ) {
-        alert('Please fill in all the fields.');
+  
+    // Function to update the prompt list UI
+    function updatePromptList(filteredPrompts) {
+      promptList.innerHTML = '';
+  
+      if (filteredPrompts.length === 0) {
+        promptList.innerHTML = '<p>No prompts found.</p>';
         return;
+      }
+  
+      const startIndex = (currentPage - 1) * 10;
+      const endIndex = Math.min(startIndex + 10, filteredPrompts.length);
+  
+      for (let i = startIndex; i < endIndex; i++) {
+        const prompt = filteredPrompts[i];
+        const promptElement = document.createElement('div');
+        promptElement.textContent = prompt.title;
+        promptElement.addEventListener('click', () => {
+          chrome.runtime.sendMessage({ type: 'injectPrompt', promptContent: prompt.content }, (response) => {
+            if (response.success) {
+              alert('Prompt injected successfully.');
+            } else {
+              alert('Failed to inject prompt.');
+            }
+          });
+        });
+        promptList.appendChild(promptElement);
+      }
     }
-
-    // Create a new prompt object
-    const newPrompt = {
-        title: titleInput.value.trim(),
-        summary: summaryInput.value.trim(),
-        category: categoryInput.value.trim(),
-        useCase: useCaseInput.value.trim(),
-        tags: tagsInput.value.split(',').map((tag) => tag.trim()),
-        favorite: false,
-    };
-
-    // Add the new prompt to the prompt data
-    promptData.push(newPrompt);
-
-    //// Update the prompt list display
-    filterPrompts();
-
-    // Close the modal
-    const modal= document.getElementById('edit-prompt-modal');
-    modal.style.display = 'none';
-
-    // Reset the form inputs
-    createPromptForm.reset();
-}
-
-// Function to fetch and load the prompt data
-function fetchPromptData() {
-    // Make an API call or fetch the prompt data from the JSON/CSV file
-    // Assign the fetched data to the promptData variable
-    // For example:
-    promptData = [
-        {
-            title: 'Prompt 1',
-            summary: 'Summary of Prompt 1',
-            category: 'Category 1',
-            useCase: 'Use Case 1',
-            tags: ['Tag 1', 'Tag 2'],
-            favorite: false,
-        },
-        {
-            title: 'Prompt 2',
-            summary: 'Summary of Prompt 2',
-            category: 'Category 2',
-            useCase: 'Use Case 2',
-            tags: ['Tag 3', 'Tag 4'],
-            favorite: true,
-        },
-        // Add more prompt objects as needed
-    ];
-
-    // Display all prompts initially
-    displayPromptsForPage(promptData, currentPage);
-    updatePaginationButtons(promptData);
-}
-
-// Fetch and load the prompt data when the popup is opened
-fetchPromptData();
+  
+    // Function to update the pagination buttons UI
+    function updatePaginationButtons() {
+      totalPages = Math.ceil(promptList.childElementCount / 10);
+      previousPageButton.disabled = currentPage === 1;
+      nextPageButton.disabled = currentPage === totalPages;
+    }
+  
+    // Event listener for search box input
+    searchBox.addEventListener('input', () => {
+      filterPrompts();
+      updatePaginationButtons();
+    });
+  
+    // Event listener for category dropdown change
+    categoryDropdown.addEventListener('change', () => {
+      filterPrompts();
+      updatePaginationButtons();
+    });
+  
+    // Event listener for tags dropdown change
+    tagsDropdown.addEventListener('change', () => {
+      filterPrompts();
+      updatePaginationButtons();
+    });
+  
+    // Event listener for previous page button click
+    previousPageButton.addEventListener('click', () => {
+      currentPage--;
+      filterPrompts();
+      updatePaginationButtons();
+    });
+  
+    // Event listener for next page button click
+    nextPageButton.addEventListener('click', () => {
+      currentPage++;
+      filterPrompts();
+      updatePaginationButtons();
+    });
+  
+    // Event listener for import file input change
+    importFileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+  
+      reader.onload = () => {
+        const importedData = reader.result;
+        chrome.runtime.sendMessage({ type: 'importPromptData', data: importedData }, (response) => {
+          if (response.status === 'success') {
+            alert('Prompts imported successfully.');
+            loadPrompts();
+          } else {
+            alert('Failed to import prompts. Please check the file format.');
+          }
+        });
+      };
+  
+      reader.readAsText(file);
+    });
+  
+    // Event listenerfor export button click
+    exportButton.addEventListener('click', () => {
+      chrome.runtime.sendMessage({ type: 'exportPromptData' }, (response) => {
+        const promptData = response.data;
+        const blob = new Blob([promptData], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'prompts.json';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+    });
+  
+    // Event listener for create prompt button click
+    createPromptButton.addEventListener('click', () => {
+      promptForm.reset();
+      promptModal.style.display = 'block';
+    });
+  
+    // Event listener for prompt form submission
+    promptForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+  
+      const title = document.getElementById('title').value;
+      const summary = document.getElementById('summary').value;
+      const category = document.getElementById('category').value;
+      const useCase = document.getElementById('use-case').value;
+      const tags = document.getElementById('tags').value.split(',');
+      const content = document.getElementById('content').value;
+  
+      const prompt = {
+        id: Date.now().toString(),
+        title,
+        summary,
+        category,
+        useCase,
+        tags,
+        content,
+      };
+  
+      chrome.runtime.sendMessage({ type: 'savePrompt', prompt }, (response) => {
+        if (response.status === 'success') {
+          alert('Prompt saved successfully.');
+          promptForm.reset();
+          promptModal.style.display = 'none';
+          loadPrompts();
+        } else {
+          alert(response.message);
+        }
+      });
+    });
+  
+    // Load prompts on popup open
+    loadPrompts();
+  });
+  

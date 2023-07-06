@@ -9,38 +9,42 @@
     <div id="sidebar">
       <input type="text" id="search-box" placeholder="Search prompts..." aria-label="Search prompts">
       <div id="filters">
-        <!-- Add filter options here -->
+        <select id="category-filter" aria-label="Filter by category">
+          <option value="">All Categories</option>
+        </select>
+        <select id="tag-filter" aria-label="Filter by tag">
+          <option value="">All Tags</option>
+        </select>
       </div>
-      <div id="prompt-list" role="list">
-        <!-- Add prompts here -->
-      </div>
+      <div id="prompt-list" role="list" aria-label="List of prompts"></div>
       <div id="pagination-buttons">
-        <!-- Add pagination buttons here -->
+        <button id="prev-page-button" aria-label="Previous Page" disabled>Prev</button>
+        <button id="next-page-button" aria-label="Next Page" disabled>Next</button>
       </div>
-      <input type="file" id="import-file" accept=".json" aria-label="Import prompts">
-      <button id="export-button">Export</button>
+      <input type="file" id="import-file" accept=".json" aria-label="Import prompts" style="display: none;">
+      <label for="import-file" id="import-label" aria-label="Import prompts" class="import-label">Import</label>
     </div>
     <div id="content">
       <button id="create-prompt-button">Create New Prompt</button>
-      <div id="prompt-modal" role="dialog" aria-labelledby="prompt-modal-title">
-        <h2 id="prompt-modal-title">New Prompt</h2>
-        <form id="prompt-form">
-          <label for="title">Title:</label>
-          <input type="text" id="title" aria-required="true">
-          <label for="summary">Summary:</label>
-          <input type="text" id="summary">
-          <label for="category">Category:</label>
-          <input type="text" id="category">
-          <label for="use-case">Use Case:</label>
-          <input type="text" id="use-case">
-          <label for="tags">Tags:</label>
-          <input type="text" id="tags">
-          <label for="content">Content:</label>
-          <textarea id="content"></textarea>
-          <button type="submit">Save Prompt</button>
-        </form>
-      </div>
     </div>
+  </div>
+  <div id="prompt-modal" role="dialog" aria-labelledby="prompt-modal-title">
+    <h2 id="prompt-modal-title">New Prompt</h2>
+    <form id="prompt-form" autocomplete="off">
+      <label for="title">Title:</label>
+      <input type="text" id="title" required>
+      <label for="summary">Summary:</label>
+      <input type="text" id="summary" required>
+      <label for="category">Category:</label>
+      <input type="text" id="category" required>
+      <label for="use-case">Use Case:</label>
+      <input type="text" id="use-case" required>
+      <label for="tags">Tags:</label>
+      <input type="text" id="tags" required>
+      <label for="content">Content:</label>
+      <textarea id="content" required></textarea>
+      <button type="submit">Save Prompt</button>
+    </form>
   </div>
   <script src="popup.js"></script>
 </body>
