@@ -1,5 +1,3 @@
-// Consolidated popup.js
-
 // Store the prompt data
 let promptData = [];
 
@@ -112,7 +110,7 @@ function goToNextPage() {
 }
 
 // Function to show the modal with the prompt content
-function showPromptModal(prompt) {
+functionshowPromptModal(prompt) {
     const modal = document.getElementById('show-prompt-modal');
     const modalContent = modal.querySelector('.modal-content');
 
@@ -217,7 +215,7 @@ function handleCreatePrompt(event) {
     filterPrompts();
 
     // Close the modal
-    const modal = document.getElementById('edit-prompt-modal');
+    const modal= document.getElementById('edit-prompt-modal');
     modal.style.display = 'none';
 
     // Reset the form inputs
@@ -254,17 +252,5 @@ function fetchPromptData() {
     updatePaginationButtons(promptData);
 }
 
-// Load the prompt data when the popup is opened
+// Fetch and load the prompt data when the popup is opened
 fetchPromptData();
-
-// Function to toggle the favorite state of a prompt
-function toggleFavorite(prompt) {
-    prompt.favorite = !prompt.favorite;
-    filterPrompts();
-}
-
-// Event listener for favorite button click
-promptItem.addEventListener('click', (event) => {
-    const clickedPrompt = promptData.find((prompt) => prompt.title === event.target.dataset.title);
-    toggleFavorite(clickedPrompt);
-});

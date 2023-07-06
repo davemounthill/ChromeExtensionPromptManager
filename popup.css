@@ -1,278 +1,157 @@
 /* Reset some default styles */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Set body background and font styles */
-  body {
-    background-color: #f5f5f5;
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-    color: #333333;
-  }
-  
-  /* Container styles */
-  .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  /* Sidebar styles */
-  .sidebar {
-    width: 300px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-  }
-  
-  .sidebar h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .searchbox {
-    margin-bottom: 20px;
-  }
-  
-  .searchbox input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  .filters h2 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .filterItem {
-    margin-bottom: 10px;
-  }
-  
-  .filterItem label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .filterItem input[type="text"],
-  .filterItem select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  .promptList {
-    margin-bottom: 20px;
-  }
-  
-  .promptList div {
-    cursor: pointer;
-    padding: 10px;
-    background-color: #f5f5f5;
-    border-radius: 4px;
-    margin-bottom: 5px;
-  }
-  
-  .promptList div:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .promptList div:last-child {
-    margin-bottom: 0;
-  }
-  
-  .pagination {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .pagination button {
-    padding: 8px 16px;
-    background-color: #2196f3;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  
-  .pagination button:disabled {
-    background-color: #e0e0e0;
-    cursor: not-allowed;
-  }
-  
-  .importExport {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .importExport button {
-    padding: 8px 16px;
-    background-color: #2196f3;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  
-  .importExport input[type="file"] {
-    display: none;
-  }
-  
-  .content {
-    flex-grow: 1;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20pxcontinued...
-  
-  .content h2 {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .buttonGroup {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-  }
-  
-  .buttonGroup button {
-    padding: 8px 16px;
-    background-color: #2196f3;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  .buttonGroup button:last-child {
-    margin-left: 0;
-  }
-  
-  .showPromptButton,
-  .editPromptButton,
-  .usePromptButton,
-  .favoritePromptButton {
-    background-color: #f5f5f5;
-    color: #333333;
-  }
-  
-  .showPromptButton:hover,
-  .editPromptButton:hover,
-  .usePromptButton:hover,
-  .favoritePromptButton:hover {
-    background-color: #e0e0e0;
-  }
-  
-  #createPromptForm {
-    display: none;
-    margin-top: 20px;
-  }
-  
-  #createPromptForm h2 {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .formGroup {
-    margin-bottom: 10px;
-  }
-  
-  .formGroup label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .formGroup input[type="text"],
-  .formGroup textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  .formGroup textarea {
-    resize: vertical;
-  }
-  
-  .formGroup input[type="text"]:focus,
-  .formGroup textarea:focus {
-    outline: none;
-    border-color: #2196f3;
-  }
-  
-  .formGroup input[type="text"]::placeholder,
-  .formGroup textarea::placeholder {
-    color: #bdbdbd;
-  }
-  
-  .formGroup button {
-    padding: 8px 16px;
-    background-color: #2196f3;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  
-  .formGroup button:first-child {
-    background-color: #f5f5f5;
-    color: #333333;
-    margin-right: 10px;
-  }
-  
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .modal-content {
-    background-color: #ffffff;
-    max-width: 500px;
-    margin: 100px auto;
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .modal-content h3 {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .modal-content p {
-    margin-bottom: 20px;
-  }
-  
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set body background and font styles */
+body {
+  background-color: #f5f5f5;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333333;
+}
+
+/* Container styles */
+#container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Sidebar styles */
+#sidebar {
+  width: 300px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+#search-box {
+  margin-bottom: 20px;
+  padding: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#prompt-list {
+  margin-bottom: 20px;
+}
+
+#prompt-list div {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+#prompt-list div:hover {
+  background-color: #e0e0e0;
+}
+
+#pagination-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#pagination-buttons button {
+  padding: 8px 16px;
+  background-color: #2196f3;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#pagination-buttons button:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+#content {
+  flex-grow: 1;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+#create-prompt-button {
+  padding: 8px 16px;
+  background-color: #2196f3;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+#prompt-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#prompt-modal-content {
+  background-color: #ffffff;
+  max-width: 500px;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#prompt-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#prompt-form input[type="text"],
+#prompt-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+ font-size: 14px;
+}
+
+#prompt-form textarea {
+  resize: vertical;
+}
+
+#prompt-form input[type="text"]:focus,
+#prompt-form textarea:focus {
+  outline: none;
+  border-color: #2196f3;
+}
+
+#prompt-form input[type="text"]::placeholder,
+#prompt-form textarea::placeholder {
+  color: #bdbdbd;
+}
+
+#prompt-form button {
+  padding: 8px 16px;
+  background-color: #2196f3;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+}

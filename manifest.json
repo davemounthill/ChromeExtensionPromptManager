@@ -1,30 +1,27 @@
 {
-    "manifest_version": 2,
-    "name": "ChatGPT Prompts Manager",
-    "version": "1.0",
-    "description": "A Google Chrome Extension for managing and using ChatGPT prompts.",
-    "icons": {
-      "16": "icon16.png",
-      "48": "icon48.png",
-      "128": "icon128.png"
-    },
-    "browser_action": {
-      "default_popup": "popup.html"
-    },
-    "background": {
-      "scripts": ["background.js"],
-      "persistent": false
-    },
-    "content_scripts": [
-      {
-        "matches": ["*://*/*"],
-        "js": ["content.js"]
-      }
-    ],
-    "permissions": [
-      "storage",
-      "tabs",
-      "activeTab"
-    ]
-  }
-  
+  "manifest_version": 2,
+  "name": "ChatGPT Prompts Manager",
+  "version": "1.0",
+  "description": "Manage your ChatGPT prompts efficiently",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "options_page": "options.html",
+  "permissions": ["storage", "activeTab", "tabs"]
+}
