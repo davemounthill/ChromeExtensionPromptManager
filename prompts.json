@@ -1,0 +1,20 @@
+[
+    {
+      "Title": "Prompt Title",
+      "Summary": "Prompt summary",
+      "Category": "Category",
+      "Use Case": "Use case",
+      "Tags": ["tag1", "tag2"],
+      "Prompt Content": "Prompt content",
+      "Favorite": false
+    },
+    {
+      "Title": "Another Prompt Title",
+      "Summary": "Another Prompt summary",
+      "Category": "Another Category",
+      "Use Case": "Another Use case",
+      "Tags": ["tag3", "tag4"],
+      "Prompt Content": "Another Prompt content",
+      "Favorite": true
+    }
+  ]
