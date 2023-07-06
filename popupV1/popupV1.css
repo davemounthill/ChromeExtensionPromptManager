@@ -1,0 +1,102 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar {
+  width: 30%;
+  border-right: 1px solid #ccc;
+  padding: 10px;
+}
+
+.content {
+  width: 70%;
+  padding: 10px;
+}
+
+.searchbox {
+  margin-bottom: 20px;
+}
+
+.searchbox input {
+  width: 100%;
+  padding: 5px;
+}
+
+.filters {
+  margin-bottom: 20px;
+}
+
+.filterItem {
+  margin-bottom: 10px;
+}
+
+.filterItem label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.filterItem input,
+.filterItem select {
+  width: 100%;
+  padding: 5px;
+}
+
+.promptList {
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+}
+
+.importExport {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.importExport button,
+.importExport input {
+  width: 48%;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  padding: 5px;
+}

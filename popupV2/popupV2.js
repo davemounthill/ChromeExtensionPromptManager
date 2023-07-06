@@ -107,9 +107,6 @@ previousPageButton.addEventListener('click', () => {
 
 // Event listener for next page button
 nextPageButton.addEventListener('click', () => {
-  const totalPages =```javascript
-// Event listener for next page button
-nextPageButton.addEventListener('click', () => {
   const totalPages = Math.ceil(filteredPrompts.length / promptsPerPage);
   if (currentPage < totalPages) {
     currentPage++;
