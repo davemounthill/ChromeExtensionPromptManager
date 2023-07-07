@@ -8,22 +8,22 @@
   <h1>Options</h1>
   <h2>Prompts Data</h2>
   <p>Select a prompts data source:</p>
-  <label>
-    <input type="radio" name="data-source" value="local" checked>
+  <label for="local-source">
+    <input type="radio" id="local-source" name="data-source" value="local" checked>
     Local Storage
   </label>
-  <label>
-    <input type="radio" name="data-source" value="sync">
+  <label for="sync-source">
+    <input type="radio" id="sync-source" name="data-source" value="sync">
     Sync Storage
   </label>
   <h2>Appearance</h2>
   <p>Select a color scheme:</p>
-  <label>
-    <input type="radio" name="color-scheme" value="light" checked>
+  <label for="light-scheme">
+    <input type="radio" id="light-scheme" name="color-scheme" value="light" checked>
     Light
   </label>
-  <label>
-    <input type="radio" name="color-scheme" value="dark">
+  <label for="dark-scheme">
+    <input type="radio" id="dark-scheme" name="color-scheme" value="dark">
     Dark
   </label>
   <button id="save-options-button">Save Options</button>

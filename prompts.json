@@ -6,7 +6,7 @@
     "category": "Category",
     "useCase": "Use case",
     "tags": ["tag1", "tag2"],
-    "content": "Prompt content",
+    "prompt": "Prompt content",
     "favorite": 0,
     "createdAt": "2023-07-06T00:00:00Z",
     "updatedAt": "2023-07-06T00:00:00Z"
@@ -18,7 +18,7 @@
     "category": "Another Category",
     "useCase": "Another Use case",
     "tags": ["tag3", "tag4"],
-    "content": "Another Prompt content",
+    "prompt": "Another Prompt content",
     "favorite": 1,
     "createdAt": "2023-07-06T00:00:00Z",
     "updatedAt": "2023-07-06T00:00:00Z"

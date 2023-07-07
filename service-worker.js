@@ -1,10 +1,34 @@
+// background.js
+const welcomePage = 'options.html';
+const mainPage = 'popup.html';
+const secondPage = 'bookmark.html';
+
 chrome.runtime.onInstalled.addListener(() => {
-  fetch('prompts.json')
-    .then(response => response.json())
-    .then(prompts => {
-      chrome.storage.local.set({ prompts });
+    chrome.sidePanel.setOptions({
+        path: welcomePage
     });
 });
+
+chrome.tabs.onActivated.addListener(async ({
+    tabId
+}) => {
+    const {
+        path
+    } = await chrome.sidePanel.getOptions({
+        tabId
+    });
+    if (path === welcomePage) {
+        chrome.sidePanel.setOptions({
+            path: mainPage
+        });
+    }
+});
+
+chrome.sidePanel.setPanelBehavior({
+    openPanelOnActionClick: true
+}).catch((error) => console.error(error));
+
+(
 
 if (typeof browser !== "undefined") {
     chrome.action = browser.browserAction
@@ -29,12 +53,7 @@ chrome.action.onClicked.addListener(function(tab) {
     });
 });
 
-chrome.runtime.onInstalled.addListener(function (object) {
-    const welcomeUrl = "https://link.aipromptgenius.app/welcome-install";
-    if (object.reason === chrome.runtime.OnInstalledReason.INSTALL) {
-        chrome.tabs.create({url: welcomeUrl});
-    }
-});
+
 
 chrome.runtime.onMessage.addListener(function (message){
     if (message.type === "resync"){

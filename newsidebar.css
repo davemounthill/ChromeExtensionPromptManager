@@ -1,0 +1,189 @@
+/* Container styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.sidebar-container {
+    width: 300px;
+    height: 100vh;
+    background-color: #f1f1f1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Search bar styles */
+.search-container {
+    margin-bottom: 20px;
+}
+
+#search {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+}
+
+/* Category dropdown styles */
+.category-container {
+    margin-bottom: 20px;
+}
+
+#category {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+}
+
+/* Prompt templates styles */
+#templates {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.template {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.template:hover {
+    background-color: #f9f9f9;
+}
+
+.template h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.template p {
+    margin: 10px 0;
+}
+
+.template span {
+    color: blue;
+}
+
+/* Pagination styles */
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-buttons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 5px;
+}
+
+.modal-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#promptText {
+    margin: 0;
+    font-size: 18px;
+}
+
+#promptForm button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Add your CSS styles here */
+#sidebar {
+  width: 300px;
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+#search-container {
+  margin-bottom: 10px;
+}
+
+#prompts {
+  margin-bottom: 10px;
+}
+
+.prompt {
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 20% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

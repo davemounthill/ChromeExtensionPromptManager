@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+                <title>
+                    Prompt Sidebar
+                </title>
+                <link href="newsidebar.css" rel="stylesheet">
+                </link>
+            </meta>
+        </meta>
+    </head>
+    <body>
+        <div class="sidebar-container">
+            <div class="search-container">
+                <input id="search" placeholder="Search Prompts..." type="text">
+                </input>
+            </div>
+            <div class="category-container">
+                <select id="category">
+                    <option value="">
+                        All
+                    </option>
+                    <option value="Category 1">
+                        Category 1
+                    </option>
+                    <option value="Category 2">
+                        Category 2
+                    </option>
+                    <option value="Category 3">
+                        Category 3
+                    </option>
+                </select>
+            </div>
+            <ul id="templates">
+            </ul>
+            <div class="pagination-container">
+                <span id="pagination">
+                </span>
+                <div class="pagination-buttons">
+                    <button id="prevPageBtn">
+                        Prev
+                    </button>
+                    <button id="nextPageBtn">
+                        Next
+                    </button>
+                    <button onclick="prevPromptTemplatesPage()">
+                        Prev
+                    </button>
+                    <button onclick="nextPromptTemplatesPage()">
+                        Next
+                    </button>
+                </div>
+            </div>
+            <h2>
+                Prompts
+            </h2>
+            <div id="search-container">
+                <label for="search">
+                    Search:
+                </label>
+                <input id="search" name="search" type="text">
+                    <label for="category">
+                        Category:
+                    </label>
+                    <select id="category" name="category">
+                        <option value="">
+                            All
+                        </option>
+                    </select>
+                </input>
+            </div>
+            <div id="prompts">
+            </div>
+            <button id="create">
+                Create New Prompt
+            </button>
+        </div>
+        <div id="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close">
+                    ×
+                </span>
+                <form id="new-prompt-form">
+                    <label for="title">
+                        Title:
+                    </label>
+                    <input id="title" name="title" type="text">
+                        <label for="prompt">
+                            Prompt:
+                        </label>
+                        <textarea id="prompt" name="prompt">
+                        </textarea>
+                        <label for="tags">
+                            Tags:
+                        </label>
+                        <input id="tags" name="tags" type="text">
+                            <label for="category">
+                                Category:
+                            </label>
+                            <input id="category" name="category" type="text">
+                                <input type="submit" value="Create New Prompt">
+                                </input>
+                            </input>
+                        </input>
+                    </input>
+                </form>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal" id="promptModal">
+            <div class="modal-content">
+                <span class="modal-close" id="modalClose">
+                    ×
+                </span>
+                <h3 id="promptText">
+                </h3>
+                <form id="promptForm">
+                    <button type="submit">
+                        Use Prompt
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="pagination-container">
+            <span class="pagination-text" id="pagination">
+            </span>
+            <div class="pagination-button-group">
+                <button class="pagination-button" onclick="prevPromptTemplatesPage()">
+                    Prev
+                </button>
+                <button class="pagination-button" onclick="nextPromptTemplatesPage()">
+                    Next
+                </button>
+            </div>
+        </div>
+    </body>
+</html>
+<script src="newsidebar.js">
+</script>

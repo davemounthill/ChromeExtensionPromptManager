@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>ChatGPT Prompts Manager</title>
+  <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="popup.css">
 </head>
 <body>
@@ -9,9 +10,11 @@
     <div id="sidebar">
       <input type="text" id="search-box" placeholder="Search prompts..." aria-label="Search prompts">
       <div id="filters">
+        <label for="category-filter">Filter by category:</label>
         <select id="category-filter" aria-label="Filter by category">
           <option value="">All Categories</option>
         </select>
+        <label for="tag-filter">Filter by tag:</label>
         <select id="tag-filter" aria-label="Filter by tag">
           <option value="">All Tags</option>
         </select>
@@ -22,7 +25,7 @@
         <button id="next-page-button" aria-label="Next Page" disabled>Next</button>
       </div>
       <input type="file" id="import-file" accept=".json" aria-label="Import prompts" style="display: none;">
-      <label for="import-file" id="import-label" aria-label="Import prompts" class="import-label">Import</label>
+      <label for="import-file" id="import-label" class="import-label">Import</label>
     </div>
     <div id="content">
       <button id="create-prompt-button">Create New Prompt</button>
@@ -47,5 +50,4 @@
     </form>
   </div>
   <script src="popup.js"></script>
-</body>
 </html>
